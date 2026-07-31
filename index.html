@@ -73,6 +73,26 @@
       transform: scale(1) !important;
     }
 
+    /* Live relay slide: never display:none — browsers suspend/freeze WebRTC
+       video inside a display:none iframe, which broke the phone connection
+       every time this slide was navigated away from and back to. Keep it
+       mounted and flex at all times; toggle visibility instead so the
+       peer connection survives slide navigation without a manual refresh. */
+    #relay-slide {
+      display: flex !important;
+      opacity: 0;
+      pointer-events: none;
+      z-index: -1;
+      transform: scale(0.97);
+    }
+
+    #relay-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 2;
+      transform: scale(1);
+    }
+
     /* Glassmorphism Card Style */
     .glass-card {
       background: var(--card-bg);
@@ -1116,7 +1136,7 @@
 
 
     <!-- SLIDE 19: Makerton Live Relay -->
-    <section class="slide">
+    <section class="slide" id="relay-slide">
       <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; gap:14px; max-width:1240px; margin:auto;">
         <!-- 상단 타이틀 -->
         <div style="display:flex; align-items:center; gap:14px; flex-shrink:0;">
