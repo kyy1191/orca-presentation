@@ -1186,7 +1186,12 @@
             display:flex; flex-direction:column; align-items:center; gap:6px;
             box-shadow:0 8px 28px rgba(0,0,0,0.5);
           ">
-            <canvas id="cast-qr" width="132" height="132" style="border-radius:8px; display:block;"></canvas>
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?size=132x132&margin=1&data=https%3A%2F%2Fbrightwindow.github.io%2Fmakerton-live-relay%2F%3Frole%3Dcast%26room%3DBFA4TT"
+              width="132" height="132"
+              alt="폰 카메라로 스캔하면 실시간 송출 시작"
+              style="border-radius:8px; display:block; background:#f8fafc;"
+            />
             <div style="font-size:0.68rem; color:#e2e8f0; font-weight:800; text-align:center; line-height:1.4;">
               📱 카메라로 스캔<br/>실시간 송출 시작
             </div>
@@ -1323,20 +1328,6 @@
         goTo(currentIndex - 1);
       }
     });
-  </script>
-
-  <!-- 4. Live-relay cast QR code -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
-  <script>
-    const castQrCanvas = document.getElementById('cast-qr');
-    if (castQrCanvas && window.QRCode) {
-      QRCode.toCanvas(
-        castQrCanvas,
-        'https://brightwindow.github.io/makerton-live-relay/?role=cast&room=BFA4TT',
-        { width: 132, margin: 1, color: { dark: '#0f172a', light: '#f8fafc' } },
-        (err) => { if (err) console.error('QR render failed', err); }
-      );
-    }
   </script>
 </body>
 </html>
